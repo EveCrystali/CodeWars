@@ -12,11 +12,14 @@ public class Permutations
 
         for (int i = 0; i < input.Length; i++)
         {
-            strings.Add(RemoveIChar(i , input));
-            Console.WriteLine($"New string added by RemoveIChar : {strings.Last()}");
-            foreach(string s in strings)
+            string reduceStringI = RemoveIChar(i , input);
+            Console.WriteLine($"New string added by RemoveIChar : {reduceStringI.Last()}");
+            foreach(string permutation in SinglePermutations(reduceStringI))
             {
-                permutations =[.. LinearInsert(input[i], s)];
+                foreach(string newPermutation in LinearInsert(input[i], permutation))
+                {
+                    permutations.Add(newPermutation);
+                }
             }
         }
         Console.WriteLine($"Resulat : {string.Join(",", permutations)}");
@@ -31,7 +34,7 @@ public class Permutations
         {
             linearPermutations.Add(string.Concat(s[..i], c, s[i..]));
         }
-        Console.WriteLine($"linearPermations are : {string.Join(",", linearPermutations)}");
+        Console.WriteLine($"linearPermutations are : {string.Join(",", linearPermutations)}");
         return linearPermutations;
     }
     private static string RemoveIChar(int i, string input)
