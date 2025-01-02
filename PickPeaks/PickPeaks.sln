@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PickPeaks", "PickPeaks\PickPeaks.csproj", "{B003FBD1-74A7-3A45-FB75-225018402C52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PickPeaks.Tests", "PickPeaks.Tests\PickPeaks.Tests.csproj", "{31EA6E51-B9DA-3287-E56A-1F158B70843C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B003FBD1-74A7-3A45-FB75-225018402C52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B003FBD1-74A7-3A45-FB75-225018402C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B003FBD1-74A7-3A45-FB75-225018402C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B003FBD1-74A7-3A45-FB75-225018402C52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31EA6E51-B9DA-3287-E56A-1F158B70843C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31EA6E51-B9DA-3287-E56A-1F158B70843C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31EA6E51-B9DA-3287-E56A-1F158B70843C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31EA6E51-B9DA-3287-E56A-1F158B70843C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04800B87-3B67-419C-845B-78A6060BA96C}
+	EndGlobalSection
+EndGlobal

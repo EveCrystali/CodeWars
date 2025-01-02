@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreedIsGood", "GreedIsGood\GreedIsGood.csproj", "{852F2A74-C755-D3F2-A4C2-1E3F18E1F086}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreedIsGood.Tests", "GreedIsGood.Tests\GreedIsGood.Tests.csproj", "{CDA658C1-89DF-3FE8-FE63-277D3DCD08E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{852F2A74-C755-D3F2-A4C2-1E3F18E1F086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{852F2A74-C755-D3F2-A4C2-1E3F18E1F086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{852F2A74-C755-D3F2-A4C2-1E3F18E1F086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{852F2A74-C755-D3F2-A4C2-1E3F18E1F086}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA658C1-89DF-3FE8-FE63-277D3DCD08E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA658C1-89DF-3FE8-FE63-277D3DCD08E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA658C1-89DF-3FE8-FE63-277D3DCD08E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA658C1-89DF-3FE8-FE63-277D3DCD08E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F6345F5-83D3-4263-AAFA-C493C89D1523}
+	EndGlobalSection
+EndGlobal
