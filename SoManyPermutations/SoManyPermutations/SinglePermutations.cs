@@ -4,45 +4,37 @@ public class Permutations
 {
     public static List<string> SinglePermutations(string input)
     {
-        // Il y a n! permutations
+        HashSet<string> permutations = [];
 
         if (input.Length == 1) return [input];
 
-        HashSet<string> preAnswer = [];
-
-        for (int i = 0; i < input.Length - 1; i++)
-        {
-            string inputWithoutIChar = RemoveCharAtIndex(i, input);
-
-            HashSet<string> linearPermutation = [.. LinearPermutationAuto(i, inputWithoutIChar)];
-
-            foreach (string s in linearPermutation)
-            {
-                preAnswer = [.. preAnswer, .. SinglePermutations(s)];
-            }
-        }
-        Console.WriteLine(preAnswer.ToString());
-        return [.. preAnswer];
-    }
-
-    private static List<string> LinearPermutationAuto(int index, string input)
-    {
-        List<string> strings = [];
         for (int i = 0; i < input.Length; i++)
         {
-            strings.Add(InsertChar(i, input[index], RemoveCharAtIndex(index, input)));
+            string reduceStringI = RemoveIChar(i, input);
+            foreach (string permutation in SinglePermutations(reduceStringI))
+            {
+                foreach (string newPermutation in LinearInsert(input[i], permutation))
+                {
+                    permutations.Add(newPermutation);
+                }
+            }
         }
-        return strings;
+        return [.. permutations];
     }
 
-
-    private static string InsertChar(int index, char c, string input)
+    private static List<string> LinearInsert(char c, string s)
     {
-        return string.Concat(input.AsSpan(0, index).ToString(), c, input.AsSpan(index).ToString());
+        List<string> linearPermutations = [];
+
+        for (int i = 0; i <= s.Length; i++)
+        {
+            linearPermutations.Add(string.Concat(s[..i], c, s[i..]));
+        }
+        return linearPermutations;
     }
 
-    private static string RemoveCharAtIndex(int index, string input)
+    private static string RemoveIChar(int i, string input)
     {
-        return string.Concat(input.AsSpan(0, index), input.AsSpan(index + 1));
+        return string.Concat(input[..i], input[(i + 1)..]);
     }
 }
