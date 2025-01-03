@@ -16,7 +16,8 @@ public class BefungeInterpreter
 
     private string output = "";
 
-    private string Stack = "";
+    // Limitate the stack to 80 * 25 which the maximum dimension of Befunge-83
+    private List<int> Stack = [];
 
     private static char CursorInertie;
 
@@ -69,11 +70,55 @@ public class BefungeInterpreter
     private void StackRefresh(char c)
     {
         if (c <= 57 && c >= 48) {
-            Stack += c;
+            Stack = [.. Stack.Prepend<int>(c-48)];
         }
-        if(c == '+')
+        else if(c == '+')
         {
-            
+            int add = Stack[0] + Stack[1];
+            Stack.RemoveRange(0,2);
+            Stack = [..Stack.Prepend<int>(add)];
+        }
+        else if(c == '-')
+        {
+            int add = Stack[0] - Stack[1];
+            Stack.RemoveRange(0,2);
+            Stack = [..Stack.Prepend<int>(add)];
+        }
+        else if(c == '*')
+        {
+            int add = Stack[0] * Stack[1];
+            Stack.RemoveRange(0,2);
+            Stack = [..Stack.Prepend<int>(add)];
+        }
+        else if(c == '/')
+        {
+            int add = Stack[0] / Stack[1];
+            Stack.RemoveRange(0,2);
+            Stack = [..Stack.Prepend<int>(add)];
+        }
+        else if(c == '%')
+        {
+            int add = Stack[0] % Stack[1];
+            Stack.RemoveRange(0,2);
+            Stack = [..Stack.Prepend<int>(add)];
+        }
+        else if(c == '!')
+        {
+            Stack.RemoveAt(0);
+            if (Stack[0]==0) Stack = [..Stack.Prepend<int>(1)];
+            else Stack = [..Stack.Prepend<int>(0)];
+        }
+        else if(c=='`')
+        {
+            if(Stack[1]>Stack[0])
+            {
+                Stack[0] = 1;
+                Stack.RemoveAt(1);
+            }
+            else
+            {
+                Stack = [..Stack.Prepend<int>(0)];
+            }
         }
     }
 
