@@ -14,27 +14,37 @@ public class BefungeInterpreter
     ? Start moving in a random cardinal direction.
     */
 
-    public class CursorPos
+    private string output = "";
+
+    private string Stack = "";
+
+    private static char CursorInertie;
+
+    private class CursorPos
     {
         public int Column { get; set; }
         public int Line { get; set; }
     }
 
-    private CursorPos CursorMovement(char c, CursorPos pos)
+    private static CursorPos CursorMovement(char c, CursorPos pos)
     {
         switch (c)
         {
             case '>':
                 pos.Column += 1;
+                CursorInertie = '>';
                 break;
             case '<':
                 pos.Column -= 1;
+                CursorInertie = '<';
                 break;
             case '^':
                 pos.Line -= 1;
+                CursorInertie = '^';
                 break;
             case 'v':
                 pos.Line += 1;
+                CursorInertie = 'v';
                 break;
             case '?':
                 Random random = new Random();
@@ -43,6 +53,10 @@ public class BefungeInterpreter
                 Console.WriteLine($"Random Column : {random1} ; Random Line {random2}");
                 pos.Column += random1;
                 pos.Line += random2;
+                CursorInertie = '?';
+                break;
+            default:
+                CursorMovement(CursorInertie, pos);
                 break;
         }
         return pos;
@@ -50,6 +64,20 @@ public class BefungeInterpreter
 
     /*
     0-9 Push this number onto the stack.
+    */
+
+    private void StackRefresh(char c)
+    {
+        if (c <= 57 && c >= 48) {
+            Stack += c;
+        }
+        if(c == '+')
+        {
+            
+        }
+    }
+
+    /*
     + Addition: Pop a and b, then push a+b.
     - Subtraction: Pop a and b, then push b-a.
     * Multiplication: Pop a and b, then push a*b.
