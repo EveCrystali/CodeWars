@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "snail", "snail\snail.csproj", "{9FA8DC69-E8FF-1055-1106-819F5FA381F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "snail.tests", "snail.tests\snail.tests.csproj", "{51BBB211-E676-2768-68CE-640845745616}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FA8DC69-E8FF-1055-1106-819F5FA381F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FA8DC69-E8FF-1055-1106-819F5FA381F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FA8DC69-E8FF-1055-1106-819F5FA381F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FA8DC69-E8FF-1055-1106-819F5FA381F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51BBB211-E676-2768-68CE-640845745616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51BBB211-E676-2768-68CE-640845745616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51BBB211-E676-2768-68CE-640845745616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51BBB211-E676-2768-68CE-640845745616}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67E51B51-7531-4F44-ABEE-166ADFC57CC7}
+	EndGlobalSection
+EndGlobal
