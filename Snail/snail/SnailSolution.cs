@@ -8,31 +8,25 @@ public class SnailSolution
         int[] result = [array[0][0]];
         int columns = array[0].Length;
         int rows = array.Length;
+        int[] ij = [0, 0];
 
-        int i = 0;
-        int j = 0;
+        List<(int, int)> alreadyAdded = [];
 
-        int[] ij = [i, j];
-        
-
-        List<(int, int)> alreadyAdded = []
-
-        alreadyAdded.Add((i, j));
+        alreadyAdded.Add((ij[0], ij[1]));
 
         Dictionary<(int, int), int> surroundingsAvailable = new Dictionary<(int, int), int>();
-
 
         // First loop ensuring that all cells have been added
         while (alreadyAdded.Count <= columns * rows)
         {
-            surroundingsAvailable = getSurroundings(array, ij alreadyAdded);
+            surroundingsAvailable = getSurroundings(array, ij, alreadyAdded);
             if (surroundingsAvailable.Count > 0)
             {
-                var min = surroundingsAvailable.MinBy(x => x.Value);
-                result.Add(min.Value);
+                KeyValuePair<(int, int), int> min = surroundingsAvailable.MinBy(x => x.Value);
+                result = [.. result, min.Value];
                 alreadyAdded.Add(min.Key);
-                i = min.Key.Item1;
-                j = min.Key.Item2;
+                ij[0] = min.Key.Item1;
+                ij[1] = min.Key.Item2;
             }
             else
             {
@@ -43,8 +37,7 @@ public class SnailSolution
         return result;
     }
 
-
-    Dictionary<(int, int), int> getSurroundings(int[][] array, int[] ij, List<(int, int)> alreadyAdded)
+    private static Dictionary<(int, int), int> getSurroundings(int[][] array, int[] ij, List<(int, int)> alreadyAdded)
     {
         Dictionary<(int, int), int> surroundings = new Dictionary<(int, int), int>();
         int rows = array.Length;
@@ -53,8 +46,8 @@ public class SnailSolution
         int j = ij[1];
 
         // Définir les déplacements possibles (voisins)
-        int[] rowOffsets = { -1, -1, -1, 0, 0, 1, 1, 1 };
-        int[] colOffsets = { -1, 0, 1, -1, 1, -1, 0, 1 };
+        int[] rowOffsets = { -1, 0, 0, 1 };
+        int[] colOffsets = { 0, -1, 1, 0 };
 
         for (int k = 0; k < rowOffsets.Length; k++)
         {
@@ -62,13 +55,9 @@ public class SnailSolution
             int newCol = j + colOffsets[k];
 
             // Vérifier si les nouvelles coordonnées sont valides (dans les limites du tableau)
-            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < columns)
+            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < columns && !alreadyAdded.Contains((newRow, newCol)))
             {
-               
-                if (!alreadyAdded.Contains(new int[] { newRow, newCol })) 
-                {
-                    surroundings.Add((newRow, newCol), array[newRow][newCol]);
-                }
+                surroundings.Add((newRow, newCol), array[newRow][newCol]);
             }
         }
 

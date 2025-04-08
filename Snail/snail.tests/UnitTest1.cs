@@ -1,10 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Linq;
-using Snail.SnailSolution;
-
-
-using namespace snail.tests;
+using snail;
 
 public class SnailTest
 {
