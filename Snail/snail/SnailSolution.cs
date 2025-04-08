@@ -36,31 +36,30 @@ public class SnailSolution
 
         return result;
     }
-
-    private static Dictionary<(int, int), int> getSurroundings(int[][] array, int[] ij, List<(int, int)> alreadyAdded)
+    private Dictionary<(int, int), int> GetSurroundings(int[][] array, int[] headOfSnail, List<(int, int)> alreadyAdded)
     {
-        Dictionary<(int, int), int> surroundings = new Dictionary<(int, int), int>();
         int rows = array.Length;
         int columns = array[0].Length;
-        int i = ij[0];
-        int j = ij[1];
+        int currentRow = headOfSnail[0];
+        int currentColumn = headOfSnail[1];
 
-        // Définir les déplacements possibles (voisins)
-        int[] rowOffsets = { -1, 0, 0, 1 };
-        int[] colOffsets = { 0, -1, 1, 0 };
-
-        for (int k = 0; k < rowOffsets.Length; k++)
+        (int RowOffset, int ColOffset)[] offsets = new (int RowOffset, int ColOffset)[]
         {
-            int newRow = i + rowOffsets[k];
-            int newCol = j + colOffsets[k];
+        (-1, 0), (0, -1), (0, 1), (1, 0)
+        };
 
-            // Vérifier si les nouvelles coordonnées sont valides (dans les limites du tableau)
-            if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < columns && !alreadyAdded.Contains((newRow, newCol)))
+        Dictionary<(int, int), int> surroundings = new Dictionary<(int, int), int>();
+
+        foreach ((int rowOffset, int colOffset) in offsets)
+        {
+            int adjacentRow = Math.Clamp(currentRow + rowOffset, 0, rows - 1);
+            int adjacentColumn = Math.Clamp(currentColumn + colOffset, 0, columns - 1);
+
+            if (!alreadyAdded.Contains((adjacentRow, adjacentColumn)))
             {
-                surroundings.Add((newRow, newCol), array[newRow][newCol]);
+                surroundings[(adjacentRow, adjacentColumn)] = array[adjacentRow][adjacentColumn];
             }
         }
-
         return surroundings;
     }
 }
