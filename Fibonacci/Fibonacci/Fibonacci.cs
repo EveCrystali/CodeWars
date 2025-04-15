@@ -1,38 +1,53 @@
 using System;
 using System.Numerics;
-public class Fibonacci
+public static class Fibonacci
 {
     public static BigInteger fib(int n)
     {
         if (n == 0) return 0;
         if (n == 1) return 1;
 
-        BigInteger resultN2 = 0;
-        BigInteger resultN1 = 1, resultN0 = 0;
-        int m;
+        int absN = n < 0 ? -n : n;
 
-        if (n < 0)
+        BigInteger resultABS = MatrixMultiply(MatrixPower([[1, 1], [1, 0]], absN), [[1], [0]])[1][0];
+
+        return (n < 0 && n % 2 == 0) ? -resultABS : resultABS;
+    }
+
+    private static BigInteger[][] MatrixPower(BigInteger[][] baseMatrix, int pow)
+    {
+        if (pow == 0)
+            return [[1, 0], [0, 1]];
+
+        if (pow % 2 == 0)
         {
-            m = -n;
+            BigInteger[][] half = MatrixPower(baseMatrix, pow / 2);
+            return MatrixMultiply(half, half);
         }
         else
+            return MatrixMultiply(MatrixPower(baseMatrix, pow - 1), baseMatrix);
+    }
+
+    private static BigInteger[][] MatrixMultiply(BigInteger[][] matrix1, BigInteger[][] matrix2)
+    {
+        int rowsCountM1 = matrix1.Length;
+        int columnsCountM2 = matrix2[0].Length;
+        BigInteger[][] result = new BigInteger[rowsCountM1][];
+        for (int i = 0; i < rowsCountM1; i++)
         {
-            m = n;
+            result[i] = new BigInteger[columnsCountM2];
         }
 
-        for (int i = 1; i < m; i++)
+        for (int i = 0; i < rowsCountM1; i++)
         {
-            resultN2 = resultN1 + resultN0;
-            resultN0 = resultN1;
-            resultN1 = resultN2;
-
+            for (int j = 0; j < columnsCountM2; j++)
+            {
+                for (int k = 0; k < rowsCountM1; k++)
+                {
+                    result[i][j] += matrix1[i][k] * matrix2[k][j];
+                }
+            }
         }
-
-        if (n < 0 && m % 2 == 0)
-        {
-            return -resultN2;
-        }
-
-        return resultN2;
+        return result;
     }
 }
