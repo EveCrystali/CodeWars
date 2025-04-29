@@ -19,6 +19,6 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-  "test": "mocha -r ts-node/register test/**/*.test.ts"
+    "test": "mocha -r ts-node/register test/**/*.test.ts"
+  }
 }
-
