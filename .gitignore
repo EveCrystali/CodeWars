@@ -41,3 +41,25 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+
+
+# Typescript
+# Fichiers et dossiers générés par npm
+node_modules/
+package-lock.json
+
+# Fichiers et dossiers générés par TypeScript
+build/
+dist/
+lib/
+*.js
+*.d.ts
+*.map
+
+# Fichiers de configuration
+tsconfig.json
+*.vscode/
+
+# Fichiers temporaires
+*.tmp
+*.log
