@@ -1,6 +1,6 @@
 export function spinWords(words: string): string {
 
-    let response: string = words;
+    let response: string = "";
 
     if (words.length < 4) {
         return words;
@@ -8,17 +8,16 @@ export function spinWords(words: string): string {
 
     let arrayWords: string[] = words.split(' ');
 
-    for (let i = 0; i++; i < arrayWords.length) {
-        let word: string = arrayWords[i];
+    for (let i = 0; i < arrayWords.length;  i++) {
+        const word: string = arrayWords[i];
 
-        if (word.length < 5) {
-            continue;
-        }
-        else {
+        if (word.length >= 5) {
+
             let wordTemp = '';
-            for (let j = 0; j++; word.length) {
+            for (let j = 0; j <= word.length; j++) {
                 wordTemp += word.charAt(word.length - j);
             }
+            
             arrayWords[i] = wordTemp;
         }
         if (i == arrayWords.length -1)
@@ -29,7 +28,6 @@ export function spinWords(words: string): string {
         {
             response += arrayWords[i] + ' ';
         }
-
     }
 
     return response;
