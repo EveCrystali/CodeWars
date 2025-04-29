@@ -8,7 +8,7 @@ export function spinWords(words: string): string {
 
     let arrayWords: string[] = words.split(' ');
 
-    for (let i = 0; i++; arrayWords.length) {
+    for (let i = 0; i++; i < arrayWords.length) {
         let word: string = arrayWords[i];
 
         if (word.length < 5) {
@@ -21,6 +21,16 @@ export function spinWords(words: string): string {
             }
             arrayWords[i] = wordTemp;
         }
+        if (i == arrayWords.length -1)
+        {
+            response += arrayWords[i];
+        }
+        else
+        {
+            response += arrayWords[i] + ' ';
+        }
+
     }
+
     return response;
 }
