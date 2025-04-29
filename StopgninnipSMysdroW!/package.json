@@ -1,9 +1,9 @@
 {
-  "name": "stopgninnipsmysdrow!",
+  "name": "stopgninnipsmysdrow",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -r ts-node/register \"./test/**/*.test.ts\"" 
   },
   "keywords": [],
   "author": "",
@@ -17,8 +17,5 @@
     "mocha": "^11.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
-  },
-  "scripts": {
-    "test": "mocha -r ts-node/register test/**/*.test.ts"
   }
 }

@@ -1,5 +1,5 @@
 import {assert} from "chai";
-import {spinWords} from './solution';
+import {spinWords} from '../src/spinWords';
 
 describe("spinWords", () =>{
   it("should pass some fixed tests", () => {
