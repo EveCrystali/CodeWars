@@ -8,61 +8,61 @@ public class RomanNumerals
     private static readonly List<int> Div = new List<int> { 1000, 500, 100, 50, 10, 5, 1 };
     private static readonly List<char> C = new List<char> { 'M', 'D', 'C', 'L', 'X', 'V', 'I' };
 
-    public class VarStep
+    public class ConversionToRomanState
     {
-        public string response { get; set; } = "";
-        public int n { get; set; }
-        public int div { get; set; }
-        public int q { get; set; }
-        public char c { get; set; }
+        public string Response { get; set; } = "";
+        public int N { get; set; }
+        public int Div { get; set; }
+        public int Q { get; set; }
+        public char C { get; set; }
     }
 
     public static string ToRoman(int n)
     {
         if (n == 0 || n > 4000) return "";
 
-        VarStep varStep = new() { response = "", n = n, div = Div[0], q = 0, c = C[0] };
+        ConversionToRomanState state = new() { Response = "", N = n, Div = Div[0], Q = 0, C = C[0] };
 
         do
         {
-            AddCharByChar(varStep);
+            AddCharByChar(state);
         }
-        while (varStep.n != 0);
+        while (state.N != 0);
 
-        return varStep.response;
+        return state.Response;
 
     }
 
-    public static void AddCharByChar(VarStep varStep)
+    public static void AddCharByChar(ConversionToRomanState state)
     {
-        varStep.q = varStep.n / varStep.div;
+        state.Q = state.N / state.Div;
 
-        int currentIndex = Div.IndexOf(varStep.div);
+        int currentIndex = Div.IndexOf(state.Div);
 
         if (currentIndex + 1 < Div.Count)
         {
             int nextDiv = Div[currentIndex + 1];
-            int tempq = varStep.n / nextDiv;
+            int tempq = state.N / nextDiv;
 
             if (tempq == 9 || tempq == 4)
             {
-                varStep.response += C[currentIndex + 1].ToString() + C[currentIndex - 1].ToString();
-                varStep.n -= tempq * nextDiv;
+                state.Response += C[currentIndex + 1].ToString() + C[currentIndex - 1].ToString();
+                state.N -= tempq * nextDiv;
                 return;
             }
         }
 
-        while (varStep.q > 0)
+        while (state.Q > 0)
         {
-            varStep.response += varStep.c;
-            varStep.n -= varStep.div;
-            varStep.q--;
+            state.Response += state.C;
+            state.N -= state.Div;
+            state.Q--;
         }
 
         if (currentIndex + 1 < Div.Count)
         {
-            varStep.div = Div[currentIndex + 1];
-            varStep.c = C[currentIndex + 1];
+            state.Div = Div[currentIndex + 1];
+            state.C = C[currentIndex + 1];
         }
     }
 
@@ -74,28 +74,9 @@ public class RomanNumerals
         {
             char c1 = romanNumeral[i];
             int indexC1 = C.IndexOf(c1);
-
-            // if (i < romanNumeral.Length - 1)
-            // {
-            //     char c2 = romanNumeral[i + 1];
-            //     int indexC2 = C.IndexOf(c2);
-
-            //     if (indexC2 > indexC1 && indexC2 % 2 == 0)
-            //     {
-            //         // Substraction
-            //         response += Div[indexC1] - Div[indexC2];
-            //         i++;
-            //         continue;
-            //     }
-            // }
-
             response += Div[indexC1];
-
-
         }
 
         return response;
     }
-
-
 }
