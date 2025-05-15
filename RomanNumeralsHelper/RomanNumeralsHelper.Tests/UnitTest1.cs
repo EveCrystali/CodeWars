@@ -39,38 +39,51 @@ namespace Solution {
 
       Assert.That(actual, Is.EqualTo(expected));
     }
-    
+
     [Test, Order(4)]
     public void TestToRoman_004()
     {
-        int input = 1990;
-        string expected = "MCMXC";
+      int input = 1990;
+      string expected = "MCMXC";
 
-        string actual = RomanNumerals.ToRoman(input);
+      string actual = RomanNumerals.ToRoman(input);
 
-        Assert.That(actual, Is.EqualTo(expected));
+      Assert.That(actual, Is.EqualTo(expected));
     }
 
-    // [Test, Order(3)]
-    // public void TestFromRoman_001()
-    // {
-    //     string input = "I";
-    //     int expected = 1;
+    [Test, Order(3)]
+    public void TestFromRoman_001()
+    {
+      string input = "I";
+      int expected = 1;
 
-    //     int actual = RomanNumerals.FromRoman(input);
+      int actual = RomanNumerals.FromRoman(input);
 
-    //     Assert.That(actual, Is.EqualTo(expected));
-    // }
+      Assert.That(actual, Is.EqualTo(expected));
+    }
 
-    // [Test, Order(4)]
-    // public void TestFromRoman_002()
-    // {
-    //     string input = "II";
-    //     int expected = 2;
+    [Test, Order(4)]
+    public void TestFromRoman_002()
+    {
+      string input = "II";
+      int expected = 2;
 
-    //     int actual = RomanNumerals.FromRoman(input);
+      int actual = RomanNumerals.FromRoman(input);
 
-    //     Assert.That(actual, Is.EqualTo(expected));
-    // }
+      Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    
+
+    [Test, Order(5)]
+    public void TestFromRoman_003()
+    {
+      string input = "MDCLXVI";
+      int expected = 1666 ;
+
+      int actual = RomanNumerals.FromRoman(input);
+
+      Assert.That(actual, Is.EqualTo(expected));
+    }
   }
 }

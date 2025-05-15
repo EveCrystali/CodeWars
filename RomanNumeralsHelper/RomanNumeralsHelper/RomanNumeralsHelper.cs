@@ -1,4 +1,6 @@
 using System.Dynamic;
+using System.Numerics;
+using System.Collections.Generic;
 
 public class RomanNumerals
 {
@@ -41,7 +43,7 @@ public class RomanNumerals
         {
             int nextDiv = Div[currentIndex + 1];
             int tempq = varStep.n / nextDiv;
-  
+
             if (tempq == 9 || tempq == 4)
             {
                 varStep.response += C[currentIndex + 1].ToString() + C[currentIndex - 1].ToString();
@@ -66,7 +68,33 @@ public class RomanNumerals
 
     public static int FromRoman(string romanNumeral)
     {
-        return 0;
+        int response = 0;
+
+        for (int i = 0; i < romanNumeral.Length; i++)
+        {
+            char c1 = romanNumeral[i];
+            int indexC1 = C.IndexOf(c1);
+
+            // if (i < romanNumeral.Length - 1)
+            // {
+            //     char c2 = romanNumeral[i + 1];
+            //     int indexC2 = C.IndexOf(c2);
+
+            //     if (indexC2 > indexC1 && indexC2 % 2 == 0)
+            //     {
+            //         // Substraction
+            //         response += Div[indexC1] - Div[indexC2];
+            //         i++;
+            //         continue;
+            //     }
+            // }
+
+            response += Div[indexC1];
+
+
+        }
+
+        return response;
     }
 
 
