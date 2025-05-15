@@ -82,13 +82,24 @@ namespace Solution {
       int actual = RomanNumerals.FromRoman(input);
 
       Assert.That(actual, Is.EqualTo(expected));
-    }    
-    
+    }
+
     [Test, Order(6)]
     public void TestFromRoman_004()
     {
       string input = "LXXXVI";
       int expected = 86;
+
+      int actual = RomanNumerals.FromRoman(input);
+
+      Assert.That(actual, Is.EqualTo(expected));
+    }
+    
+    [Test, Order(7)]
+    public void TestFromRoman_005()
+    {
+      string input = "IV";
+      int expected = 4;
 
       int actual = RomanNumerals.FromRoman(input);
 

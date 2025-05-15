@@ -42,18 +42,6 @@ public static class RomanNumeralConverter
         public char Char { get; set; }
     }
 
-    public static int FromRoman(string romanNumeral)
-    {
-        int response = 0;
-        for (int i = 0; i < romanNumeral.Length; i++)
-        {
-            char c1 = romanNumeral[i];
-            int indexC1 = C.IndexOf(c1);
-            response += Div[indexC1];
-        }
-        return response;
-    }
-
     public static void AddCharByChar(ConversionToRomanState state)
     {
         state.Quotient = state.N / state.Divisors;
@@ -93,5 +81,31 @@ public static class RomanNumeralConverter
             return true;
         }
         return false;
+    }
+
+    public static int FromRoman(string romanNumeral)
+    {
+        int response = 0;
+        int lenght = romanNumeral.Length;
+        for (int i = 0; i < lenght; i++)
+        {
+            char c1 = romanNumeral[i];
+            int indexC1 = C.IndexOf(c1);
+
+            if (i + 1 < lenght)
+            {
+                char c2 = romanNumeral[i + 1];
+                int indexC2 = C.IndexOf(c2);
+
+                if (indexC2 < indexC1)
+                {
+                    response += Div[indexC2] - Div[indexC1];
+                    i++;
+                    continue;
+                }
+            }
+            response += Div[indexC1];
+        }
+        return response;
     }
 }
