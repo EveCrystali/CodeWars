@@ -1,127 +1,62 @@
 using System.Dynamic;
 using System.Numerics;
 using System.Collections.Generic;
+using System.Text;
 
 public static class RomanNumerals
 {
-    public static string ToRoman(int n) => RomanNumeralConverter.ToRoman(n);
-    public static int FromRoman(string romanNumeral) => RomanNumeralConverter.FromRoman(romanNumeral);
-}
-
-public static class RomanNumeralConverter
-{
-
-    private static readonly List<int> Div = new List<int> { 1000, 500, 100, 50, 10, 5, 1 };
-    private static readonly List<char> C = new List<char> { 'M', 'D', 'C', 'L', 'X', 'V', 'I' };
-
-    private const int MAX_ROMAN_VALUE = 4000;
-    private const int SUBTRACTIVE_NOTATION_FOUR = 4;
-    private const int SUBTRACTIVE_NOTATION_NINE = 9;
+    private static readonly (int value, string roman)[] Map =
+    [
+        (1000, "M"),
+        (900, "CM"),
+        (500, "D"),
+        (400, "CD"),
+        (100, "C"),
+        (90, "XC"),
+        (50, "L"),
+        (40, "XL"),
+        (10, "X"),
+        (9, "IX"),
+        (5, "V"),
+        (4, "IV"),
+        (1, "I"),
+    ];
 
     public static string ToRoman(int n)
     {
-        if (n == 0 || n > MAX_ROMAN_VALUE) return "";
-
-        ConversionToRomanState state = new() { Response = "", N = n, Divisors = Div[0], Quotient = 0, Char = C[0] };
-
-        do
+        string response = "";
+        for (int i = 0; i < Map.Length; i++)
         {
-            AddCharByChar(state);
-        }
-        while (state.N != 0);
-
-        return state.Response;
-    }
-
-    public class ConversionToRomanState
-    {
-        public string Response { get; set; } = "";
-        public int N { get; set; }
-        public int Divisors { get; set; }
-        public int Quotient { get; set; }
-        public char Char { get; set; }
-    }
-
-    public static void AddCharByChar(ConversionToRomanState state)
-    {
-        state.Quotient = state.N / state.Divisors;
-        int currentIndex = Div.IndexOf(state.Divisors);
-
-        if (currentIndex + 1 < Div.Count)
-        {
-
-            int nextDiv = Div[currentIndex + 1];
-            int tempQuotient = state.N / nextDiv;
-
-
-
-            if (tempQuotient != 0 && TryHandleSubtractiveNotation(state, currentIndex, nextDiv, tempQuotient))
+            while (n / Map[i].value > 0)
             {
-                return;
+                response += Map[i].roman;
+                n -= Map[i].value;
             }
         }
-
-
-        while (state.Quotient > 0)
-        {
-            state.Response += state.Char;
-            state.N -= state.Divisors;
-            state.Quotient--;
-        }
-
-        if (currentIndex + 1 < Div.Count)
-        {
-            state.Divisors = Div[currentIndex + 1];
-            state.Char = C[currentIndex + 1];
-        }
-    }
-
-    private static bool TryHandleSubtractiveNotation(ConversionToRomanState state, int currentIndex, int nextDiv, int tempQuotient)
-    {
-        if (nextDiv % 10 != 0)
-        {
-            return false;
-        }
-
-        if (tempQuotient == SUBTRACTIVE_NOTATION_NINE)
-        {
-            state.Response += C[currentIndex + 1].ToString() + C[currentIndex - 1].ToString();
-            state.N -= tempQuotient * nextDiv;
-            return true;
-        }
-
-        if (tempQuotient == SUBTRACTIVE_NOTATION_FOUR)
-        {
-            state.Response += C[currentIndex + 1].ToString() + C[currentIndex].ToString();
-            state.N -= tempQuotient * nextDiv;
-            return true;
-        }
-
-        return false;
+        return response;
     }
 
     public static int FromRoman(string romanNumeral)
     {
         int response = 0;
-        int lenght = romanNumeral.Length;
-        for (int i = 0; i < lenght; i++)
+        int i = 0;
+        while (i < romanNumeral.Length)
         {
-            char c1 = romanNumeral[i];
-            int indexC1 = C.IndexOf(c1);
-
-            if (i + 1 < lenght)
+            bool match = false;
+            foreach ((int value, string numeral) in Map)
             {
-                char c2 = romanNumeral[i + 1];
-                int indexC2 = C.IndexOf(c2);
-
-                if (indexC2 < indexC1)
+                if (romanNumeral[i..].StartsWith(numeral))
                 {
-                    response += Div[indexC2] - Div[indexC1];
-                    i++;
-                    continue;
+                    response += value;
+                    i += numeral.Length;
+                    match = true;
+                    break;
                 }
             }
-            response += Div[indexC1];
+            if (!match)
+            {
+                i++;
+            }
         }
         return response;
     }
