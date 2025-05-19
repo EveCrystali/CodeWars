@@ -49,14 +49,18 @@ public static class RomanNumeralConverter
 
         if (currentIndex + 1 < Div.Count)
         {
+
             int nextDiv = Div[currentIndex + 1];
             int tempQuotient = state.N / nextDiv;
 
-            if (TryHandleSubtractiveNotation(state, currentIndex, nextDiv, tempQuotient))
+
+
+            if (tempQuotient != 0 && TryHandleSubtractiveNotation(state, currentIndex, nextDiv, tempQuotient))
             {
                 return;
             }
         }
+
 
         while (state.Quotient > 0)
         {
@@ -74,12 +78,25 @@ public static class RomanNumeralConverter
 
     private static bool TryHandleSubtractiveNotation(ConversionToRomanState state, int currentIndex, int nextDiv, int tempQuotient)
     {
-        if (tempQuotient == SUBTRACTIVE_NOTATION_NINE || tempQuotient == SUBTRACTIVE_NOTATION_FOUR)
+        if (nextDiv % 10 != 0)
+        {
+            return false;
+        }
+
+        if (tempQuotient == SUBTRACTIVE_NOTATION_NINE)
         {
             state.Response += C[currentIndex + 1].ToString() + C[currentIndex - 1].ToString();
             state.N -= tempQuotient * nextDiv;
             return true;
         }
+
+        if (tempQuotient == SUBTRACTIVE_NOTATION_FOUR)
+        {
+            state.Response += C[currentIndex + 1].ToString() + C[currentIndex].ToString();
+            state.N -= tempQuotient * nextDiv;
+            return true;
+        }
+
         return false;
     }
 

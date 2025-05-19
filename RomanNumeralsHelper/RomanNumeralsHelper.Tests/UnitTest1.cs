@@ -94,7 +94,7 @@ namespace Solution {
 
       Assert.That(actual, Is.EqualTo(expected));
     }
-    
+
     [Test, Order(7)]
     public void TestFromRoman_005()
     {
@@ -102,6 +102,29 @@ namespace Solution {
       int expected = 4;
 
       int actual = RomanNumerals.FromRoman(input);
+
+      Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    [Test, Order(7)]
+    public void TestToRoman_005()
+    {
+      int input = 4;
+      string expected = "IV";
+
+      string actual = RomanNumerals.ToRoman(input);
+
+      Assert.That(actual, Is.EqualTo(expected));
+    }
+    
+
+    [Test, Order(8)]
+    public void TestToRoman_006()
+    {
+      int input = 23;
+      string expected = "XXIII";
+
+      string actual = RomanNumerals.ToRoman(input);
 
       Assert.That(actual, Is.EqualTo(expected));
     }
