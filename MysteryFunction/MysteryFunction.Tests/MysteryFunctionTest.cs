@@ -1,5 +1,8 @@
 using NUnit.Framework;
 using System;
+using Kata;
+
+namespace Kata.Tests;
 
 public class MysteryFunctionTest
 {
