@@ -55,6 +55,6 @@ public static class MysteryFunction
         return resultat;
     }
 
-    public static string NameOfMystery(int n) => "gray code";
+    public static string NameOfMystery() => "gray code";
 
 }
