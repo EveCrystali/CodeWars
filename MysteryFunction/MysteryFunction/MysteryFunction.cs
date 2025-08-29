@@ -10,12 +10,8 @@ public static class MysteryFunction
 
         for (int i = 63; i > 0; i--)
         {
-            // On parcours bit par bit n pour appliquer la logique de conversion
-
-            // On fabrique un long dont tous les bits sont nuls sauf celui en position i qui vaut 1
             long masque = 1L << i;
 
-            // Si le bit en position i de n vaut 1 alors on veut que le bit suivant dans notre résultat vaut 1 sauf si il est déjà sur 1 alors on veut 0
             if ((n & masque) != 0)
             {
                 long masque2 = 1L << i - 1;
