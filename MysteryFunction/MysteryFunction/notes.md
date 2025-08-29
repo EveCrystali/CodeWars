@@ -36,3 +36,27 @@ Etape 3 : convertir 'mystery(n) en binaire en int (résultat final)
 << (Décalage à gauche)
 
 >> (Décalage à droite)
+
+
+---
+
+Pour Mystery(n)
+La conversion d'un entier n en son code de Gray équivaut à faire un XOR (^) entre n et n décalé d'un bit vers la droite (n >> 1).
+
+La formule est : gray_code = n ^ (n >> 1)
+
+Regardons avec ton exemple n = 6 (binaire ...110) :
+
+n : ...000110
+
+n >> 1 : ...000011 (on décale tout d'un cran à droite)
+
+XOR :
+
+  ...000110  (n)
+^ ...000011  (n >> 1)
+----------------
+  ...000101  (résultat)
+Le résultat ...101 en binaire est 5, ce qui est bien mystery(6).
+
+Ton code, avec sa boucle et ses conditions, arrivait au même résultat de manière procédurale, mais cette formule le fait en une seule opération.
