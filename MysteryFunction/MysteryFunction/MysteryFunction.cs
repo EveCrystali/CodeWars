@@ -7,7 +7,8 @@ public class MysteryFunction
     public static long Mystery(long n)
     {
         long resultat = n;
-        for (int i = 0; i <= 62; i++)
+
+        for (int i = 63; i > 0; i--)
         {
             // On parcours bit par bit n pour appliquer la logique de conversion
 
@@ -17,7 +18,7 @@ public class MysteryFunction
             // Si le bit en position i de n vaut 1 alors on veut que le bit suivant dans notre résultat vaut 1 sauf si il est déjà sur 1 alors on veut 0
             if ((n & masque) != 0)
             {
-                long masque2 = 1L << i + 1;
+                long masque2 = 1L << i - 1;
 
                 if ((n & masque2) != 0)
                 {
@@ -27,7 +28,6 @@ public class MysteryFunction
                 {
                     resultat |= masque2;
                 }
-
             }
         }
 
